@@ -85,6 +85,7 @@ subprojects {
 
 		spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
 		spotbugs 'com.github.spotbugs:spotbugs:4.8.3'
+
 	}
 
 	jar {
@@ -101,7 +102,9 @@ subprojects {
 					'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
 					'Built-On-Minecraft'	  : minecraft_version,
 					"MixinConfigs"            : mixin_config,
-					"TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker"
+					"TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
+					"FMLCorePluginContainsFMLMod": true,
+					"ForceLoadAsMod"		  :	true,
 			])
 		}
 	}
@@ -146,6 +149,43 @@ subprojects {
 			//mapping("net.legacyfabric:yarn:${project.minecraft_version}+build.mcp:v2")
 			//legacyYarn("533")
 		}
+	    runs.config("client") {
+
+			def sout = launchClasspath.runtimeClasspath
+			sout = sout.filter { File f ->
+    			f.name.endsWith(".jar")
+			}
+			sout = sout.filter { File f ->
+    			!f.name.endsWith("ExampleMod-Common-1.7.10-1.0.0.jar")
+			}
+
+			println '==================================================FINALLY'
+			launchClasspath.runtimeClasspath = sout
+			println launchClasspath.runtimeClasspath.getAsPath()
+
+
+			//args.removeElement("--tweakClass")
+			//args.removeElement("cpw.mods.fml.common.launcher.FMLTweaker")
+			args.removeElement("--username")
+			args.removeElement("Dev")
+        	//args.addAll(["--tweakClass", "org.spongepowered.asm.launch.MixinTweaker"])
+			//args.addAll(["--mixin examplemod.mixins.json"])
+			args.addAll(["--username", "ButtonmMash"])
+
+			println "$projectDir"+ "\\libs"
+			args.addAll(["--mods=", "$projectDir" + "\\build\\libs\\ExampleMod-Common-1.7.10-1.0.0.jar"])
+        	//jvmArgs.addAll(["-Dfml.coreMods.load=io.github.legacymoddingmc.unimixins.all.AllCore"])
+			//jvmArgs.addAll(["-Dunimixins.compat.hackClasspathModDiscovery=true"])
+			//jvmArgs.addAll(["-Dmixin.debug=true"])
+			//jvmArgs.addAll(["-Dmixin.debug.countInjections=true"])
+			//jvmArgs.addAll(["-Dmixin.debug.verbose=true"])
+			//jvmArgs.addAll(["-Dmixin.debug.export=true"])
+
+
+
+    	}
+
+
 	}
 
 	tasks.withType(JavaCompile).configureEach {

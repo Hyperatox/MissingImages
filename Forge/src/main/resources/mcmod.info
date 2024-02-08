@@ -1,0 +1,16 @@
+[
+{
+  "modid": "examplemod",
+  "name": "OSCMIDITranslator",
+  "description": "This mod is making it possible to connect minecraft to any other game that supports the mod, !dev build! the following is planed but not true (Protocols are OSC , MIDI , TCP)",
+  "version": "v1.0.2",
+  "mcversion": "1.7.10",
+  "url": "https://github.com/Hyperatox/MCOSCTranslator",
+  "updateUrl": "",
+  "authorList": ["JuniperFox(Hyperatox), in Minecraft: ButtonMash"],
+  "credits": "Credits go to the Unity Engine, BeOS providing the midi icon, VRChat for doing nothing as making my life hard with Udon instand of C# and blocking Apis & the hateful experiance",
+  "logoFile": "osct.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
