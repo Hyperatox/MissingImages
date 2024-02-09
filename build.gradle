@@ -150,17 +150,18 @@ subprojects {
 			//legacyYarn("533")
 		}
 	    runs.config("client") {
-
-			def sout = launchClasspath.runtimeClasspath
-			sout = sout.filter { File f ->
+			/*
+			def cpout = launchClasspath.runtimeClasspath
+			cpout = cpout.filter { File f ->
     			f.name.endsWith(".jar")
 			}
-			sout = sout.filter { File f ->
+			cpout = cpout.filter { File f ->
     			!f.name.endsWith("ExampleMod-Common-1.7.10-1.0.0.jar")
 			}
 
-			println '==================================================FINALLY'
-			launchClasspath.runtimeClasspath = sout
+
+			launchClasspath.runtimeClasspath = cpout
+			println 'EDITED classpath: '
 			println launchClasspath.runtimeClasspath.getAsPath()
 
 
@@ -174,14 +175,15 @@ subprojects {
 
 			println "$projectDir"+ "\\libs"
 			args.addAll(["--mods=", "$projectDir" + "\\build\\libs\\ExampleMod-Common-1.7.10-1.0.0.jar"])
+
+
         	//jvmArgs.addAll(["-Dfml.coreMods.load=io.github.legacymoddingmc.unimixins.all.AllCore"])
 			//jvmArgs.addAll(["-Dunimixins.compat.hackClasspathModDiscovery=true"])
 			//jvmArgs.addAll(["-Dmixin.debug=true"])
 			//jvmArgs.addAll(["-Dmixin.debug.countInjections=true"])
 			//jvmArgs.addAll(["-Dmixin.debug.verbose=true"])
 			//jvmArgs.addAll(["-Dmixin.debug.export=true"])
-
-
+			*/
 
     	}
 
